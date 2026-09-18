@@ -1,0 +1,220 @@
+/* ==========================================================================
+   ESTILOS COMPLEMENTARES - GERENCIADOR DE TAREFAS & METAS DIÁRIAS
+   Disciplina: Projeto de Interfaces para Web
+   Tecnologias: CSS3 Custom Properties, Flexbox, Animações e Bootstrap 5 Overrides
+   ========================================================================== */
+
+/* 1. VARIÁVEIS CSS E TOKENS DE DESIGN */
+:root {
+  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+  
+  /* Paleta de Cores Refinada */
+  --bg-gradient-header: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --priority-alta: #ef4444;
+  --priority-media: #f59e0b;
+  --priority-baixa: #10b981;
+
+  --transition-speed: 0.25s;
+  --border-radius-card: 1rem;
+}
+
+/* 2. TIPOGRAFIA GERAL E BASE */
+body {
+  font-family: var(--font-primary);
+  color: #334155;
+  background-color: #f8fafc !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* 3. CABEÇALHO HERO */
+.hero-header {
+  background: var(--bg-gradient-header);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 4. CARDS DE ESTATÍSTICAS */
+.card-stat {
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  background: #ffffff;
+}
+
+.card-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+}
+
+.stat-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Barra de Progresso Customizada */
+.progress {
+  background-color: #e2e8f0;
+  overflow: hidden;
+  border-radius: 9999px;
+}
+
+.progress-bar {
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 5. FORMULÁRIO DE CADASTRO */
+.form-card {
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.15);
+}
+
+.input-group-text {
+  border-color: #dee2e6;
+}
+
+/* 6. LISTA DINÂMICA DE TAREFAS */
+.list-card {
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Item individual da Tarefa */
+.task-item {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0.75rem !important;
+  padding: 1rem 1.25rem;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+  animation: taskSlideIn 0.3s ease-out forwards;
+}
+
+.task-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateX(2px);
+}
+
+/* Indicador de Prioridade na borda esquerda */
+.task-item.priority-alta {
+  border-left: 5px solid var(--priority-alta) !important;
+}
+
+.task-item.priority-media {
+  border-left: 5px solid var(--priority-media) !important;
+}
+
+.task-item.priority-baixa {
+  border-left: 5px solid var(--priority-baixa) !important;
+}
+
+/* Estado da Tarefa Concluída */
+.task-item.task-completed {
+  background-color: #f8fafc;
+  opacity: 0.75;
+  border-left-color: #94a3b8 !important;
+}
+
+.task-item.task-completed .task-title {
+  text-decoration: line-through;
+  color: #64748b;
+}
+
+/* Animações de Entrada e Saída */
+@keyframes taskSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item.task-removing {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.3s ease;
+}
+
+/* Botões de Ação da Tarefa */
+.btn-toggle-status {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-toggle-status:hover {
+  transform: scale(1.1);
+}
+
+.btn-delete-task {
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.task-item:hover .btn-delete-task {
+  opacity: 1;
+}
+
+.btn-delete-task:hover {
+  transform: scale(1.1);
+  color: #dc3545 !important;
+}
+
+/* 7. BLOCOS DE CÓDIGO DO LABORATÓRIO JQUERY */
+.code-box {
+  background-color: #0f172a;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  position: relative;
+  overflow-x: auto;
+}
+
+.code-box pre code {
+  color: #f1f5f9;
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.code-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+/* 8. BOTÕES DE FILTRO ATIVOS */
+.filter-btn.active {
+  background-color: #0d6efd !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(13, 110, 253, 0.3);
+}
+
+/* 9. ACESSIBILIDADE E REFINOS */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
