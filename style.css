@@ -31,6 +31,7 @@
   --cat-objects: #ffc107;
   --cat-async: #0dcaf0;
   --cat-strings: #dc3545;
+  --cat-advanced: #8b5cf6;
 
   --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --border-radius-card: 1rem;
@@ -120,7 +121,7 @@ code, pre, .font-monospace {
   border-color: #cbd5e1 !important;
 }
 
-/* Indicadores de Borda Lateral por Categoria */
+/* Indicadores de Borda Superior por Categoria */
 .function-card.cat-arrays {
   border-top: 4px solid var(--cat-arrays) !important;
 }
@@ -139,6 +140,10 @@ code, pre, .font-monospace {
 
 .function-card.cat-strings {
   border-top: 4px solid var(--cat-strings) !important;
+}
+
+.function-card.cat-advanced {
+  border-top: 4px solid var(--cat-advanced) !important;
 }
 
 /* 6. MINI EDITOR DE CÓDIGO (SNIPPET CONTAINER) */

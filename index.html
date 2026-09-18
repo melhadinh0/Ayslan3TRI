@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS Interactive Hub | Guia Didático & Live Playground</title>
-  <meta name="description" content="Guia visual e interativo das principais funções do JavaScript moderno (ES6+) com Live Playground em tempo real e Laboratório Comparativo com jQuery.">
+  <meta name="description" content="Guia visual e interativo de 40 funções e métodos essenciais do JavaScript moderno (ES6 a ES2023) com Live Playground em tempo real e Laboratório Comparativo com jQuery.">
 
   <!-- Google Fonts: Plus Jakarta Sans (Interface) & JetBrains Mono (Código) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,7 @@
         <div class="col-12 col-lg-8">
           <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
             <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill">
-              <i class="bi bi-filetype-js me-1"></i> JavaScript ES6+
+              <i class="bi bi-filetype-js me-1"></i> JavaScript ES6 até ES2023
             </span>
             <span class="badge bg-white bg-opacity-10 text-light rounded-pill px-3 py-1 border border-light border-opacity-25">
               <i class="bi bi-mortarboard-fill me-1"></i> Projeto de Interfaces para Web
@@ -46,7 +46,7 @@
             JS Interactive Hub
           </h1>
           <p class="lead text-light text-opacity-75 mb-0" style="font-size: 1.05rem;">
-            Explore, compreenda e execute em tempo real as funções fundamentais do ecossistema JavaScript moderno. 
+            Explore, compreenda e execute em tempo real 40 métodos e recursos fundamentais do JavaScript contemporâneo. 
             Contém exemplos práticos comentados, console interativo integrado e laboratório comparativo com jQuery.
           </p>
         </div>
@@ -55,11 +55,11 @@
           <div class="d-inline-flex flex-column gap-2 bg-black bg-opacity-25 p-3 rounded-4 border border-white border-opacity-10 text-start w-100">
             <div class="d-flex justify-content-between align-items-center small text-light text-opacity-75">
               <span><i class="bi bi-code-slash me-1 text-warning"></i> Métodos Catalogados:</span>
-              <strong class="text-white fs-6" id="headerCountTotal">22 funções</strong>
+              <strong class="text-white fs-6" id="headerCountTotal">40 funções</strong>
             </div>
             <div class="d-flex justify-content-between align-items-center small text-light text-opacity-75">
               <span><i class="bi bi-folder2-open me-1 text-info"></i> Categorias Semânticas:</span>
-              <strong class="text-white fs-6">5 módulos</strong>
+              <strong class="text-white fs-6" id="headerCountCategories">6 módulos</strong>
             </div>
             <div class="d-flex justify-content-between align-items-center small text-light text-opacity-75">
               <span><i class="bi bi-terminal me-1 text-success"></i> Ambiente de Teste:</span>
@@ -98,7 +98,7 @@
                 type="search" 
                 class="form-control border-start-0 border-end-0 bg-light" 
                 id="searchInput" 
-                placeholder="Ex.: map, filter, localStorage, fetch, querySelector..." 
+                placeholder="Ex.: map, filter, closest, structuredClone, Intl, Promise..." 
                 aria-label="Buscar funções"
                 autocomplete="off"
               >
@@ -128,7 +128,7 @@
             <i class="bi bi-list-columns-reverse me-1 text-primary"></i> Arrays <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountArrays">0</span>
           </button>
           <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="dom">
-            <i class="bi bi-window-stack me-1 text-success"></i> DOM &amp; Eventos <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountDom">0</span>
+            <i class="bi bi-window-stack me-1 text-success"></i> DOM &amp; Geometria <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountDom">0</span>
           </button>
           <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="objects">
             <i class="bi bi-braces me-1 text-warning"></i> Objetos &amp; JSON <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountObjects">0</span>
@@ -138,6 +138,9 @@
           </button>
           <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="strings">
             <i class="bi bi-fonts me-1 text-danger"></i> Strings &amp; Utils <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountStrings">0</span>
+          </button>
+          <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="advanced">
+            <i class="bi bi-stars me-1 text-purple" style="color: #8b5cf6;"></i> Moderno &amp; Avançado <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountAdvanced">0</span>
           </button>
         </div>
 
@@ -357,7 +360,7 @@ const data = await res.json();</code></pre>
           <p class="mb-0 fw-semibold text-dark">
             JS Interactive Hub &bull; Disciplina: Projeto de Interfaces para Web
           </p>
-          <span class="text-muted">Desenvolvido com HTML5 Semântico, CSS3, Bootstrap 5.3.3 e JavaScript Moderno (ES6+).</span>
+          <span class="text-muted">Desenvolvido com HTML5 Semântico, CSS3, Bootstrap 5.3.3 e JavaScript Moderno (ES6 a ES2023).</span>
         </div>
         <div class="col-12 col-md-6 text-md-end">
           <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-secondary me-3">

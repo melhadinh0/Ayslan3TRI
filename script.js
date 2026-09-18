@@ -1,28 +1,25 @@
 /**
  * ============================================================================
- * JS INTERACTIVE HUB - GUIA DIDÁTICO & LIVE PLAYGROUND (ES6+ & JQUERY)
+ * JS INTERACTIVE HUB - GUIA DIDÁTICO & LIVE PLAYGROUND (40 MÉTODOS ES6-ES2023)
  * ============================================================================
  * Disciplina: Projeto de Interfaces para Web
  * Autor: Engenheiro Front-end Sênior & Especialista Pedagógico em JavaScript
  * 
  * OBJETIVO:
- * Plataforma interativa para exploração, estudo e execução ao vivo dos principais
- * métodos e recursos da linguagem JavaScript moderna (ES6+), acompanhada de
- * um laboratório prático comparativo com jQuery.
+ * Plataforma educacional completa para consulta e teste prático de 40 métodos,
+ * operadores e APIs essenciais do ecossistema JavaScript moderno, divididos
+ * em 6 módulos temáticos com mini-consoles em tempo real e comparativo com jQuery.
  * ============================================================================
  */
 
 /* ============================================================================
  * 1. BASE DE CONHECIMENTO E CATÁLOGO DE MÉTODOS (STATE-DRIVEN CATALOG)
  * ============================================================================
- * Cada método é representado por um objeto contendo metadados educacionais,
- * código de exemplo para estudo e uma função executável ('runExample')
- * que alimenta o console interativo em tempo real.
  */
 const jsCatalog = [
 
   // --------------------------------------------------------------------------
-  // GRUPO 1: MANIPULAÇÃO DE ARRAYS
+  // GRUPO 1: MANIPULAÇÃO DE ARRAYS (10 MÉTODOS)
   // --------------------------------------------------------------------------
   {
     id: 'arr-map',
@@ -208,14 +205,127 @@ console.log("Tem permissão?", podeAcessar); // true`,
     }
   },
 
+  {
+    id: 'arr-some',
+    name: 'Array.prototype.some()',
+    category: 'arrays',
+    categoryLabel: 'Manipulação de Arrays',
+    badgeClass: 'bg-primary',
+    syntax: 'const peloMenosUm = arr.some((item) => condicao);',
+    description: 'Verifica se AO MENOS UM dos elementos do array satisfaz a condição lógica. Interrompe a execução assim que encontra o primeiro item verdadeiro (Short-circuit evaluation), retornando true.',
+    codeSnippet: `const tarefas = [
+  { id: 1, titulo: "Relatório", prioridade: "baixa" },
+  { id: 2, titulo: "Deploy Servidor", prioridade: "alta" },
+  { id: 3, titulo: "Backup", prioridade: "media" }
+];
+
+// Há alguma tarefa urgente?
+const temUrgente = tarefas.some(t => t.prioridade === "alta");
+console.log("Existe prioridade alta?", temUrgente); // true`,
+    runExample: () => {
+      const tarefas = [
+        { id: 1, prioridade: "baixa" },
+        { id: 2, prioridade: "alta" },
+        { id: 3, prioridade: "media" }
+      ];
+      const temAlta = tarefas.some(t => t.prioridade === "alta");
+      const temCritica = tarefas.some(t => t.prioridade === "critica");
+      return {
+        type: 'Boolean',
+        result: { 'possuiPrioridadeAlta': temAlta, 'possuiPrioridadeCritica': temCritica },
+        explanation: 'some() retorna true se encontrar ao menos 1 ocorrência compatível.'
+      };
+    }
+  },
+
+  {
+    id: 'arr-every',
+    name: 'Array.prototype.every()',
+    category: 'arrays',
+    categoryLabel: 'Manipulação de Arrays',
+    badgeClass: 'bg-primary',
+    syntax: 'const todosConformes = arr.every((item) => condicao);',
+    description: 'Testa se TODOS os elementos do array passam rigorosamente no teste lógico implementado pela função fornecida. Retorna false imediatamente ao encontrar a primeira falha.',
+    codeSnippet: `const idades = [19, 24, 32, 18, 45];
+
+// Todos são maiores de idade (>= 18)?
+const todosMaiores = idades.every(idade => idade >= 18);
+console.log("Todos aptos?", todosMaiores); // true`,
+    runExample: () => {
+      const idades = [19, 24, 32, 18, 45];
+      const todasMaiorIdade = idades.every(i => i >= 18);
+      const todasAcimaDe30 = idades.every(i => i >= 30);
+      return {
+        type: 'Boolean',
+        result: { 'todosMaiores18': todasMaiorIdade, 'todosAcima30': todasAcimaDe30 },
+        explanation: 'every() só é verdadeiro quando 100% da coleção satisfaz o predicado.'
+      };
+    }
+  },
+
+  {
+    id: 'arr-tosorted',
+    name: 'Array.prototype.toSorted() (ES2023)',
+    category: 'arrays',
+    categoryLabel: 'Manipulação de Arrays',
+    badgeClass: 'bg-primary',
+    syntax: 'const ordenado = arr.toSorted((a, b) => a - b);',
+    description: 'Introduzido na especificação oficial ES2023! Diferente do tradicional .sort() que muta o array de origem no local, o .toSorted() retorna uma NOVA cópia ordenada, preservando o array original intacto.',
+    codeSnippet: `const pontuacoes = [40, 100, 1, 5, 25, 10];
+
+// Ordena numericamente em ordem decrescente sem alterar o original
+const ranking = pontuacoes.toSorted((a, b) => b - a);
+
+console.log("Original intacto:", pontuacoes);
+console.log("Novo ordenado:", ranking);`,
+    runExample: () => {
+      const original = [40, 100, 1, 5, 25, 10];
+      // Fallback seguro caso o browser ainda não tenha toSorted nativo
+      const ordenado = typeof original.toSorted === 'function' ? 
+        original.toSorted((a, b) => b - a) : 
+        [...original].sort((a, b) => b - a);
+      return {
+        type: 'Array Imutável (ES2023)',
+        result: { originalIntacto: original, novoOrdenado: ordenado },
+        explanation: 'toSorted() garante pureza funcional e evita efeitos colaterais de mutação.'
+      };
+    }
+  },
+
+  {
+    id: 'arr-from',
+    name: 'Array.from()',
+    category: 'arrays',
+    categoryLabel: 'Manipulação de Arrays',
+    badgeClass: 'bg-primary',
+    syntax: 'const arrayReal = Array.from(iteravel, mapFn);',
+    description: 'Cria uma nova instância de Array a partir de qualquer objeto iterável (NodeList, Set, Map, String) ou array-like (com propriedade length), opcionalmente aplicando uma função de mapeamento inline.',
+    codeSnippet: `// 1. Converte uma string em array de caracteres maiúsculos
+const letras = Array.from("web", char => char.toUpperCase());
+console.log(letras); // ["W", "E", "B"]
+
+// 2. Cria sequência numérica de 1 a 5 sem loop for
+const numeros = Array.from({ length: 5 }, (_, i) => i + 1);
+console.log(numeros); // [1, 2, 3, 4, 5]`,
+    runExample: () => {
+      const letras = Array.from("javascript", c => c.toUpperCase());
+      const sequencia = Array.from({ length: 6 }, (_, i) => (i + 1) * 10);
+      return {
+        type: 'Array Convertido',
+        result: { letras, sequencia },
+        explanation: 'Excelente para transformar NodeLists da DOM em arrays reais com métodos como .map().'
+      };
+    }
+  },
+
   // --------------------------------------------------------------------------
-  // GRUPO 2: MANIPULAÇÃO DE DOM & EVENTOS
+  // GRUPO 2: MANIPULAÇÃO DE DOM & GEOMETRIA (7 MÉTODOS)
   // --------------------------------------------------------------------------
   {
     id: 'dom-query-selector',
     name: 'document.querySelector() / querySelectorAll()',
     category: 'dom',
-    categoryLabel: 'DOM & Eventos',
+    categoryLabel: 'DOM & Geometria',
     badgeClass: 'bg-success',
     syntax: 'const el = document.querySelector("#id .classe[atributo]");',
     description: 'Método padrão moderno para selecionar elementos no DOM utilizando qualquer seletor CSS válido. Retorna o primeiro nó correspondente ou null. A versão querySelectorAll() retorna uma NodeList estática.',
@@ -243,7 +353,7 @@ console.log("Pills encontradas:", pills.length);`,
     id: 'dom-add-event-listener',
     name: 'EventTarget.addEventListener()',
     category: 'dom',
-    categoryLabel: 'DOM & Eventos',
+    categoryLabel: 'DOM & Geometria',
     badgeClass: 'bg-success',
     syntax: 'elemento.addEventListener("evento", (event) => { ... });',
     description: 'Registra uma função de retorno (callback) para ser executada sempre que o evento especificado (click, input, submit, keydown) for disparado sobre o elemento, mantendo a separação entre JS e HTML.',
@@ -270,7 +380,7 @@ inputBusca.addEventListener("input", (e) => {
     id: 'dom-classlist-toggle',
     name: 'Element.classList.toggle()',
     category: 'dom',
-    categoryLabel: 'DOM & Eventos',
+    categoryLabel: 'DOM & Geometria',
     badgeClass: 'bg-success',
     syntax: 'const estaPresente = elemento.classList.toggle("classeCss");',
     description: 'Alterna a presença de uma classe CSS no elemento: se a classe existir, ela é removida e retorna false; se não existir, é adicionada e retorna true. Fundamental para alternar temas, abas e modais.',
@@ -297,7 +407,7 @@ elemento.classList.toggle("fade-hidden");`,
     id: 'dom-create-element',
     name: 'document.createElement()',
     category: 'dom',
-    categoryLabel: 'DOM & Eventos',
+    categoryLabel: 'DOM & Geometria',
     badgeClass: 'bg-success',
     syntax: 'const novoNo = document.createElement("div"); pai.appendChild(novoNo);',
     description: 'Cria um novo nó de elemento HTML na memória do navegador. O elemento pode ser customizado com classes, estilos e eventos antes de ser inserido na árvore DOM via appendChild ou append.',
@@ -319,8 +429,91 @@ novaBadge.textContent = "Novo Módulo";
     }
   },
 
+  {
+    id: 'dom-closest',
+    name: 'Element.closest()',
+    category: 'dom',
+    categoryLabel: 'DOM & Geometria',
+    badgeClass: 'bg-success',
+    syntax: 'const ancestral = elemento.closest(".classe-pai");',
+    description: 'Inicia a busca no elemento atual e sobe pela árvore genealógica do DOM até encontrar o ancestral mais próximo que atenda ao seletor CSS fornecido. É o coração do padrão Event Delegation!',
+    codeSnippet: `// Ao clicar em um ícone <i> dentro de um botão <button class="btn-card">:
+document.addEventListener("click", (e) => {
+  const cardPai = e.target.closest(".function-card");
+  if (cardPai) {
+    console.log("ID do card clicado:", cardPai.dataset.id);
+  }
+});`,
+    runExample: () => {
+      const botaoExemplo = document.querySelector('[data-action="run"]');
+      const cardEncontrado = botaoExemplo ? botaoExemplo.closest('.function-card') : null;
+      return {
+        type: 'DOM Ancestral',
+        result: {
+          elementoAlvo: 'Botão data-action="run"',
+          ancestralMaisProximo: cardEncontrado ? cardEncontrado.className : 'Não localizado'
+        },
+        explanation: 'closest() sobe a árvore hierárquica do DOM instantaneamente.'
+      };
+    }
+  },
+
+  {
+    id: 'dom-dataset',
+    name: 'HTMLElement.dataset (data-* attributes)',
+    category: 'dom',
+    categoryLabel: 'DOM & Geometria',
+    badgeClass: 'bg-success',
+    syntax: 'const valor = elemento.dataset.meuParametro; elemento.dataset.novo = "123";',
+    description: 'Fornece acesso de leitura e escrita a todos os atributos personalizados de dados (data-*) definidos no elemento HTML, mapeando-os automaticamente para propriedades em formato camelCase.',
+    codeSnippet: `// HTML: <button id="btnPlay" data-category="arrays" data-item-id="105">Play</button>
+const btn = document.querySelector("#btnPlay");
+
+console.log(btn.dataset.category); // "arrays"
+console.log(btn.dataset.itemId);   // "105" (converte data-item-id para itemId)`,
+    runExample: () => {
+      const primeiroCard = document.querySelector('.function-card');
+      const dataId = primeiroCard ? primeiroCard.dataset.id : 'arr-map';
+      return {
+        type: 'DOMStringMap',
+        result: { datasetId: dataId, formato: 'Objeto Chave-Valor HTML5 data-*' },
+        explanation: 'dataset permite armazenar metadados sem poluir a estrutura semântica.'
+      };
+    }
+  },
+
+  {
+    id: 'dom-bounding-rect',
+    name: 'Element.getBoundingClientRect()',
+    category: 'dom',
+    categoryLabel: 'DOM & Geometria',
+    badgeClass: 'bg-success',
+    syntax: 'const rect = elemento.getBoundingClientRect();',
+    description: 'Retorna as dimensões exatas de um elemento (width, height) e sua posição espacial (top, right, bottom, left, x, y) relativa à área visível do navegador (viewport). Essencial para tooltips, modais e scroll spies.',
+    codeSnippet: `const header = document.querySelector("header.hero-header");
+const dimensao = header.getBoundingClientRect();
+
+console.log(\`Altura: \${dimensao.height}px | Largura: \${dimensao.width}px\`);
+console.log(\`Distância do topo: \${dimensao.top}px\`);`,
+    runExample: () => {
+      const header = document.querySelector('header.hero-header');
+      if (!header) return { type: 'Geometria', result: 'Header não encontrado' };
+      const r = header.getBoundingClientRect();
+      return {
+        type: 'DOMRect (Geometria)',
+        result: {
+          largura: `${Math.round(r.width)} px`,
+          altura: `${Math.round(r.height)} px`,
+          distanciaDoTopo: `${Math.round(r.top)} px`,
+          posicaoY: `${Math.round(r.y)} px`
+        },
+        explanation: 'Coordenadas espaciais calculadas diretamente pelo motor de renderização.'
+      };
+    }
+  },
+
   // --------------------------------------------------------------------------
-  // GRUPO 3: OBJETOS E JSON
+  // GRUPO 3: OBJETOS E JSON (8 MÉTODOS & RECURSOS)
   // --------------------------------------------------------------------------
   {
     id: 'obj-keys',
@@ -352,6 +545,34 @@ console.log("Propriedades:", campos);
         type: 'Array de Strings',
         result: keys,
         explanation: `Objeto possui ${keys.length} propriedades: [${keys.join(', ')}]`
+      };
+    }
+  },
+
+  {
+    id: 'obj-values',
+    name: 'Object.values()',
+    category: 'objects',
+    categoryLabel: 'Objetos & JSON',
+    badgeClass: 'bg-warning text-dark',
+    syntax: 'const valores = Object.values(objeto);',
+    description: 'Retorna um array com os valores de todas as propriedades enumeráveis de um objeto. Complementa perfeitamente o Object.keys() para extração direta de dados.',
+    codeSnippet: `const estoque = { notebook: 15, monitor: 8, teclado: 42 };
+
+// Extrai somente as quantidades numéricas
+const quantidades = Object.values(estoque);
+const totalItens = quantidades.reduce((acc, q) => acc + q, 0);
+
+console.log("Quantidades:", quantidades); // [15, 8, 42]
+console.log("Total geral:", totalItens);  // 65`,
+    runExample: () => {
+      const estoque = { notebook: 15, monitor: 8, teclado: 42 };
+      const vals = Object.values(estoque);
+      const total = vals.reduce((a, b) => a + b, 0);
+      return {
+        type: 'Array de Valores',
+        result: { valoresExtraidos: vals, somaTotal: total },
+        explanation: 'Valores extraídos diretamente sem necessidade de iterar com loop for...in.'
       };
     }
   },
@@ -438,8 +659,105 @@ console.log("Nome acessado:", usuario.nome); // "Ayslan"`,
     }
   },
 
+  {
+    id: 'obj-structured-clone',
+    name: 'structuredClone() (Deep Clone Nativo)',
+    category: 'objects',
+    categoryLabel: 'Objetos & JSON',
+    badgeClass: 'bg-warning text-dark',
+    syntax: 'const copiaProfunda = structuredClone(objetoComplexo);',
+    description: 'API nativa do JavaScript moderno para clonagem profunda (Deep Copy). Ao contrário de JSON.parse(JSON.stringify()), suporta com perfeição datas (Date), Sets, Maps, expressões regulares e estruturas aninhadas.',
+    codeSnippet: `const original = {
+  usuario: "Dev",
+  detalhes: { nivel: "Senior", dataCriacao: new Date() }
+};
+
+// Cria uma cópia profunda 100% desconectada
+const clone = structuredClone(original);
+clone.detalhes.nivel = "Arquiteto";
+
+console.log(original.detalhes.nivel); // "Senior" (intacto!)
+console.log(clone.detalhes.nivel);    // "Arquiteto"`,
+    runExample: () => {
+      const original = {
+        projeto: "JS Interactive Hub",
+        config: { versao: 1, criadoEm: new Date().getFullYear() }
+      };
+      const copia = structuredClone(original);
+      copia.config.versao = 2; // Altera apenas na cópia profunda!
+      return {
+        type: 'Deep Clone (Nativo)',
+        result: {
+          originalVersao: original.config.versao,
+          cloneVersao: copia.config.versao,
+          referenciaIgual: original.config === copia.config // false
+        },
+        explanation: 'structuredClone garante que objetos aninhados não compartilhem o mesmo endereço de memória.'
+      };
+    }
+  },
+
+  {
+    id: 'obj-spread',
+    name: 'Spread Operator (...) em Objetos',
+    category: 'objects',
+    categoryLabel: 'Objetos & JSON',
+    badgeClass: 'bg-warning text-dark',
+    syntax: 'const mesclado = { ...obj1, ...obj2, novaProp: "valor" };',
+    description: 'Permite descarregar (espalhar) todas as propriedades enumeráveis de um objeto dentro de um novo objeto literal, facilitando clonagem rasa (Shallow Copy) e mesclagem com sobrescrita de valores.',
+    codeSnippet: `const configPadrao = { tema: "light", audio: true, volume: 80 };
+const preferenciaUsuario = { tema: "dark", volume: 100 };
+
+// Mescla com prevalência das propriedades do segundo objeto
+const configFinal = { ...configPadrao, ...preferenciaUsuario, versao: "2.0" };
+console.log(configFinal);`,
+    runExample: () => {
+      const padrao = { tema: "light", audio: true, volume: 80 };
+      const custom = { tema: "dark", volume: 100 };
+      const resultado = { ...padrao, ...custom, versao: "2.0" };
+      return {
+        type: 'Object Mesclado',
+        result: resultado,
+        explanation: 'Propriedades do objeto customizado sobrescreveram o padrão sem mutar o original.'
+      };
+    }
+  },
+
+  {
+    id: 'obj-optional-chaining',
+    name: 'Optional Chaining (?.) & Nullish Coalescing (??)',
+    category: 'objects',
+    categoryLabel: 'Objetos & JSON',
+    badgeClass: 'bg-warning text-dark',
+    syntax: 'const valor = obj?.subPropriedade?.campo ?? "Valor Padrão";',
+    description: 'O Optional Chaining (?.) evita o clássico erro "TypeError: Cannot read properties of undefined". Já o Nullish Coalescing (??) aplica um fallback apenas se o valor for null ou undefined (não descartando zero ou string vazia).',
+    codeSnippet: `const usuarioApi = {
+  id: 42,
+  nome: "Marina"
+  // perfil ou contato não existem na resposta
+};
+
+// Navegação segura sem quebrar o código
+const cep = usuarioApi.endereco?.cep ?? "CEP não cadastrado";
+const curtidas = usuarioApi.estatisticas?.curtidas ?? 0;
+
+console.log(cep);      // "CEP não cadastrado"
+console.log(curtidas); // 0`,
+    runExample: () => {
+      const usuario = { id: 42, nome: "Marina", config: { score: 0 } };
+      const rua = usuario.endereco?.rua ?? "Rua não informada";
+      // Operador || descartaria o 0 por ser falsy; o ?? preserva o 0 perfeitamente!
+      const score = usuario.config?.score ?? 10;
+      return {
+        type: 'Safe Navigation',
+        result: { rua, scorePreservado: score },
+        explanation: 'Navegação segura evita que o interpretador pare por referências inexistentes.'
+      };
+    }
+  },
+
   // --------------------------------------------------------------------------
-  // GRUPO 4: ARMAZENAMENTO E ASSINCRONISMO
+  // GRUPO 4: ARMAZENAMENTO E ASSINCRONISMO (7 MÉTODOS)
   // --------------------------------------------------------------------------
   {
     id: 'storage-local',
@@ -473,6 +791,31 @@ console.log("Recuperado:", user);`,
   },
 
   {
+    id: 'storage-session',
+    name: 'sessionStorage.setItem() / getItem()',
+    category: 'async',
+    categoryLabel: 'Storage & Async',
+    badgeClass: 'bg-info text-dark',
+    syntax: 'sessionStorage.setItem("token", "xyz"); const t = sessionStorage.getItem("token");',
+    description: 'Similar ao localStorage, porém com ciclo de vida limitado à sessão da aba atual do navegador. Se o usuário fechar a aba ou janela, os dados são automaticamente destruídos pelo navegador.',
+    codeSnippet: `// Armazena credencial temporária da aba atual
+sessionStorage.setItem("sessao_id", "auth-session-98765");
+
+const tokenAtual = sessionStorage.getItem("sessao_id");
+console.log("Sessão válida apenas nesta aba:", tokenAtual);`,
+    runExample: () => {
+      const chave = 'sessao_temp_demo';
+      sessionStorage.setItem(chave, `Token_${Math.floor(Math.random() * 10000)}`);
+      const val = sessionStorage.getItem(chave);
+      return {
+        type: 'Session Storage API',
+        result: { chave, tokenSessao: val, expiraAoFecharAba: true },
+        explanation: 'Ideal para dados sensíveis ou estados temporários de fluxos em etapas.'
+      };
+    }
+  },
+
+  {
     id: 'async-fetch',
     name: 'fetch() API',
     category: 'async',
@@ -490,7 +833,6 @@ fetch("https://jsonplaceholder.typicode.com/todos/1")
   .catch(err => console.error("Erro na requisição:", err));`,
     runExample: async () => {
       try {
-        // Exemplo com simulação assíncrona garantida e segura
         const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
         const data = await response.json();
         return {
@@ -528,7 +870,7 @@ async function executarProcessamento() {
     runExample: async () => {
       const esperar = (ms) => new Promise(resolve => setTimeout(resolve, ms));
       const inicio = performance.now();
-      await esperar(400); // 400ms delay didático
+      await esperar(300);
       const duracao = Math.round(performance.now() - inicio);
       return {
         type: 'Async / Await Resolution',
@@ -542,8 +884,102 @@ async function executarProcessamento() {
     }
   },
 
+  {
+    id: 'async-promise-all',
+    name: 'Promise.all()',
+    category: 'async',
+    categoryLabel: 'Storage & Async',
+    badgeClass: 'bg-info text-dark',
+    syntax: 'const [res1, res2] = await Promise.all([promessa1, promessa2]);',
+    description: 'Executa múltiplas Promises em paralelo e aguarda a conclusão de TODAS. É muito mais rápido do que executar await de forma sequencial quando uma requisição não depende do resultado da outra.',
+    codeSnippet: `const buscarUsuario = Promise.resolve({ id: 1, nome: "Carla" });
+const buscarConfiguracoes = Promise.resolve({ tema: "dark" });
+
+// Dispara ambas simultaneamente
+const [usuario, config] = await Promise.all([
+  buscarUsuario,
+  buscarConfiguracoes
+]);
+
+console.log(usuario, config);`,
+    runExample: async () => {
+      const p1 = new Promise(res => setTimeout(() => res('Módulo Usuários Carregado'), 150));
+      const p2 = new Promise(res => setTimeout(() => res('Módulo Notificações Carregado'), 200));
+      const inicio = performance.now();
+      const resultados = await Promise.all([p1, p2]);
+      const duracao = Math.round(performance.now() - inicio);
+      return {
+        type: 'Parallel Promises',
+        result: { resultados, duracaoTotal: `${duracao} ms` },
+        explanation: 'Ambas as Promises foram executadas em paralelo simultaneamente!'
+      };
+    }
+  },
+
+  {
+    id: 'async-promise-settled',
+    name: 'Promise.allSettled()',
+    category: 'async',
+    categoryLabel: 'Storage & Async',
+    badgeClass: 'bg-info text-dark',
+    syntax: 'const resultados = await Promise.allSettled([p1, p2, p3]);',
+    description: 'Aguarde até que todas as Promises tenham sido concluídas (seja com sucesso ou com falha). Diferente de Promise.all, não interrompe a execução caso uma das requisições seja rejeitada!',
+    codeSnippet: `const promessas = [
+  Promise.resolve("Serviço A: OK"),
+  Promise.reject(new Error("Serviço B: Indisponível")),
+  Promise.resolve("Serviço C: OK")
+];
+
+const relatorio = await Promise.allSettled(promessas);
+// Retorna array de objetos com status: "fulfilled" ou "rejected"
+console.log(relatorio);`,
+    runExample: async () => {
+      const promessas = [
+        Promise.resolve({ servico: 'Autenticação', ok: true }),
+        Promise.reject('Falha de timeout em Pagamentos'),
+        Promise.resolve({ servico: 'Catalogo', ok: true })
+      ];
+      const relatorio = await Promise.allSettled(promessas);
+      return {
+        type: 'Settled Array',
+        result: relatorio.map(r => ({ status: r.status, detalhe: r.value || r.reason })),
+        explanation: 'Ideal para coletar respostas de microsserviços onde uma falha não deve derrubar o sistema.'
+      };
+    }
+  },
+
+  {
+    id: 'async-timers',
+    name: 'setTimeout() & setInterval()',
+    category: 'async',
+    categoryLabel: 'Storage & Async',
+    badgeClass: 'bg-info text-dark',
+    syntax: 'const timer = setTimeout(callback, ms); clearTimeout(timer);',
+    description: 'Métodos do Host/Window que enfileiram callbacks na Macrotask Queue do Event Loop após o tempo decorrido. Fundamentais para temporizadores, contagens regressivas e polling.',
+    codeSnippet: `// Dispara callback após 2 segundos
+const timerId = setTimeout(() => {
+  console.log("Executado após 2 segundos!");
+}, 2000);
+
+// Para cancelar antes de rodar:
+// clearTimeout(timerId);`,
+    runExample: async () => {
+      return new Promise((resolve) => {
+        const inicio = performance.now();
+        setTimeout(() => {
+          const delta = Math.round(performance.now() - inicio);
+          resolve({
+            type: 'Timer Concluído (Macrotask)',
+            result: { mensagem: 'Callback de setTimeout executado!', atrasoMedido: `${delta} ms` },
+            explanation: 'O Event Loop enviou a tarefa para a fila e a executou quando a thread principal liberou.'
+          });
+        }, 350);
+      });
+    }
+  },
+
   // --------------------------------------------------------------------------
-  // GRUPO 5: STRINGS E UTILITÁRIOS
+  // GRUPO 5: STRINGS E UTILITÁRIOS (5 MÉTODOS)
   // --------------------------------------------------------------------------
   {
     id: 'str-trim',
@@ -656,6 +1092,134 @@ console.log(apresentacao);`,
         explanation: 'Expressões lógicas e variáveis interpoladas dinamicamente dentro de crases.'
       };
     }
+  },
+
+  {
+    id: 'str-pad',
+    name: 'String.prototype.padStart() / padEnd()',
+    category: 'strings',
+    categoryLabel: 'Strings & Utilitários',
+    badgeClass: 'bg-danger',
+    syntax: 'str.padStart(tamanhoAlvo, caractereDePreenchimento);',
+    description: 'Preenche o início ou o final da string com um caractere até atingir o comprimento desejado. Excelente para números com zeros à esquerda, máscaras de cartão de crédito e alinhamento de texto.',
+    codeSnippet: `// 1. Formata número de pedido com zeros à esquerda
+const pedidoId = "42".padStart(6, "0"); // "000042"
+
+// 2. Máscara de cartão de crédito
+const ultimos4 = "1234".padStart(16, "*");
+console.log(ultimos4); // "************1234"`,
+    runExample: () => {
+      const id = "89".padStart(5, "0");
+      const cartao = "5678".padStart(16, "•");
+      const dataHora = String(new Date().getHours()).padStart(2, "0");
+      return {
+        type: 'Strings Formatadas com Pad',
+        result: {
+          codigoComZeros: id,
+          mascaraCartao: cartao,
+          horaComDoisDigitos: dataHora
+        },
+        explanation: 'padStart() e padEnd() padronizam tamanhos sem necessidade de funções complexas.'
+      };
+    }
+  },
+
+  // --------------------------------------------------------------------------
+  // GRUPO 6: MODERNO & AVANÇADO (3 MÉTODOS / RECURSOS)
+  // --------------------------------------------------------------------------
+  {
+    id: 'adv-intl-number-format',
+    name: 'Intl.NumberFormat (Moeda & Localização)',
+    category: 'advanced',
+    categoryLabel: 'Moderno & Avançado',
+    badgeClass: 'bg-purple text-white',
+    syntax: 'new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(valor);',
+    description: 'API nativa do ECMAScript Internationalization que formata números, percentuais e moedas respeitando com rigor matemático os símbolos, separadores de milhar e casas decimais de qualquer país do mundo.',
+    codeSnippet: `const valor = 125430.75;
+
+// Formatação brasileira (Real R$)
+const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(valor);
+
+// Formatação americana (Dólar USD)
+const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(valor);
+
+console.log(brl); // "R$ 125.430,75"
+console.log(usd); // "$125,430.75"`,
+    runExample: () => {
+      const valor = 125430.75;
+      const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
+      const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(valor);
+      const eur = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(valor);
+      return {
+        type: 'Intl Formatted Currencies',
+        result: { 'Brasil (BRL)': brl, 'Estados Unidos (USD)': usd, 'Alemanha (EUR)': eur },
+        explanation: 'Precisão de internacionalização nativa sem precisar de bibliotecas de formatação externas!'
+      };
+    }
+  },
+
+  {
+    id: 'adv-destructuring',
+    name: 'Destructuring Assignment (Desestruturação)',
+    category: 'advanced',
+    categoryLabel: 'Moderno & Avançado',
+    badgeClass: 'bg-purple text-white',
+    syntax: 'const { nome, idade = 18 } = usuario; const [primeiro, ...resto] = lista;',
+    description: 'Sintaxe expressiva introduzida no ES6 que permite descompactar valores de arrays ou propriedades de objetos diretamente em variáveis distintas, suportando renomeação e valores padrão.',
+    codeSnippet: `const configuracao = {
+  servidor: "api.faculdade.edu",
+  porta: 8080
+  // ssl não foi definido
+};
+
+// Desestrutura com valor padrão e renomeação
+const { servidor: host, porta, ssl = true } = configuracao;
+
+console.log(host);  // "api.faculdade.edu"
+console.log(porta); // 8080
+console.log(ssl);   // true (valor fallback)`,
+    runExample: () => {
+      const config = { servidor: "api.faculdade.edu", porta: 8080 };
+      const { servidor: host, porta, ssl = true } = config;
+      const cores = ["azul", "verde", "amarelo"];
+      const [cor1, ...outras] = cores;
+      return {
+        type: 'Destructured Variables',
+        result: { hostRenomeado: host, porta, sslPadrao: ssl, primeiraCor: cor1, outrasCores: outras },
+        explanation: 'Desestruturação limpa e direta para extrair propriedades de objetos e arrays.'
+      };
+    }
+  },
+
+  {
+    id: 'adv-rest-spread-functions',
+    name: 'Rest Parameters & Spread em Funções',
+    category: 'advanced',
+    categoryLabel: 'Moderno & Avançado',
+    badgeClass: 'bg-purple text-white',
+    syntax: 'function somar(...numeros) { return numeros.reduce(...); }',
+    description: 'Permite que uma função represente um número indefinido de argumentos como um array real. Supera de forma tipada e segura o arcaico objeto "arguments", integrando-se perfeitamente com Arrow Functions.',
+    codeSnippet: `// Função com número variável de parâmetros (Rest)
+function calcularMedia(disciplina, ...notas) {
+  const soma = notas.reduce((acc, n) => acc + n, 0);
+  const media = soma / notas.length;
+  return { disciplina, media: Number(media.toFixed(1)) };
+}
+
+const resultado = calcularMedia("Interfaces Web", 8.5, 9.0, 7.5, 10.0);
+console.log(resultado);`,
+    runExample: () => {
+      function calcularMedia(disciplina, ...notas) {
+        const soma = notas.reduce((acc, n) => acc + n, 0);
+        return { disciplina, notas, media: Number((soma / notas.length).toFixed(2)) };
+      }
+      const res = calcularMedia("Interfaces Web", 8.5, 9.0, 7.5, 10.0);
+      return {
+        type: 'Rest Parameters Evaluation',
+        result: res,
+        explanation: 'Argumentos variáveis condensados em um array legítimo via operador rest (...).'
+      };
+    }
   }
 
 ];
@@ -664,7 +1228,6 @@ console.log(apresentacao);`,
 /* ============================================================================
  * 2. SELEÇÃO DE ELEMENTOS DO DOM (DOM CACHE)
  * ============================================================================
- * Armazenamos as referências dos nós fixos para evitar reconsultas na árvore DOM.
  */
 const searchInput = document.getElementById('searchInput');
 const btnClearSearch = document.getElementById('btnClearSearch');
@@ -673,6 +1236,7 @@ const functionsGrid = document.getElementById('functionsGrid');
 const emptyCatalogState = document.getElementById('emptyCatalogState');
 const btnResetFilters = document.getElementById('btnResetFilters');
 const headerCountTotal = document.getElementById('headerCountTotal');
+const headerCountCategories = document.getElementById('headerCountCategories');
 
 // Pílulas e contadores
 const categoryPills = document.querySelectorAll('.category-pill');
@@ -682,6 +1246,7 @@ const pillCountDom = document.getElementById('pillCountDom');
 const pillCountObjects = document.getElementById('pillCountObjects');
 const pillCountAsync = document.getElementById('pillCountAsync');
 const pillCountStrings = document.getElementById('pillCountStrings');
+const pillCountAdvanced = document.getElementById('pillCountAdvanced');
 
 
 /* ============================================================================
@@ -757,15 +1322,18 @@ const updateCategoryCounters = () => {
   const countObjects = jsCatalog.filter(item => item.category === 'objects').length;
   const countAsync = jsCatalog.filter(item => item.category === 'async').length;
   const countStrings = jsCatalog.filter(item => item.category === 'strings').length;
+  const countAdvanced = jsCatalog.filter(item => item.category === 'advanced').length;
 
-  pillCountAll.textContent = total;
-  pillCountArrays.textContent = countArrays;
-  pillCountDom.textContent = countDom;
-  pillCountObjects.textContent = countObjects;
-  pillCountAsync.textContent = countAsync;
-  pillCountStrings.textContent = countStrings;
+  if (pillCountAll) pillCountAll.textContent = total;
+  if (pillCountArrays) pillCountArrays.textContent = countArrays;
+  if (pillCountDom) pillCountDom.textContent = countDom;
+  if (pillCountObjects) pillCountObjects.textContent = countObjects;
+  if (pillCountAsync) pillCountAsync.textContent = countAsync;
+  if (pillCountStrings) pillCountStrings.textContent = countStrings;
+  if (pillCountAdvanced) pillCountAdvanced.textContent = countAdvanced;
 
-  headerCountTotal.textContent = `${total} métodos`;
+  if (headerCountTotal) headerCountTotal.textContent = `${total} funções`;
+  if (headerCountCategories) headerCountCategories.textContent = '6 módulos';
 };
 
 /**
@@ -827,7 +1395,7 @@ const renderCatalog = () => {
         <!-- Cabeçalho do Card -->
         <div class="card-header bg-white border-0 pt-3 pb-2 px-3">
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <span class="badge ${item.badgeClass} rounded-pill small">
+            <span class="badge ${item.badgeClass} rounded-pill small" ${item.category === 'advanced' ? 'style="background-color: #8b5cf6;"' : ''}>
               ${escapeHTML(item.categoryLabel)}
             </span>
             <code class="small text-muted font-monospace" style="font-size: 0.75rem;">ES6+</code>
@@ -913,11 +1481,6 @@ const renderCatalog = () => {
 /* ============================================================================
  * 7. EXECUÇÃO NO LIVE PLAYGROUND & EVENT DELEGATION
  * ============================================================================
- * CONCEITO PEDAGÓGICO:
- * Em vez de criar ouvintes 'click' individuais para cada um dos mais de 20 botões
- * de execução e cópia, utilizamos o padrão EVENT DELEGATION no container pai
- * '#functionsGrid'. O evento sobe pelo DOM (Event Bubbling) e é capturado de forma
- * performática e desacoplada.
  */
 
 /**
@@ -1062,8 +1625,6 @@ const setupFiltersAndSearch = () => {
 /* ============================================================================
  * 9. SEÇÃO DIDÁTICA: LABORATÓRIO COMPARATIVO VANILLA JS vs JQUERY
  * ============================================================================
- * Casos práticos demonstrando como o JavaScript moderno (ES6+) substituiu
- * nativamente as conveniências históricas do jQuery.
  */
 const setupJqueryComparativeLab = () => {
   const labConsoleMsg = document.getElementById('labGlobalConsoleMsg');
@@ -1078,18 +1639,17 @@ const setupJqueryComparativeLab = () => {
   const btnCompare1 = document.getElementById('btnRunCompare1');
   const demoTextEl = document.getElementById('demoTextElement');
   btnCompare1?.addEventListener('click', () => {
-    // Vanilla JS nativo:
     const novoTexto = `Atualizado via Vanilla JS (${new Date().toLocaleTimeString()})`;
     demoTextEl.textContent = novoTexto;
     demoTextEl.className = 'fw-bold text-primary';
     updateLabConsole(`document.querySelector('#demoTextElement').textContent = '${novoTexto}'`);
   });
 
-  // CASO 2: Escuta de Eventos (Eventos normalizados)
+  // CASO 2: Escuta de Eventos
   const btnCompare2 = document.getElementById('btnRunCompare2');
   const demoClickFeedback = document.getElementById('demoClickFeedback');
   btnCompare2?.addEventListener('click', (event) => {
-    event.preventDefault(); // Impede qualquer ação padrão do navegador
+    event.preventDefault();
     demoClickFeedback.textContent = `Clique interceptado às ${new Date().toLocaleTimeString()}!`;
     demoClickFeedback.className = 'fw-bold text-success';
     updateLabConsole(`addEventListener('click', e => { e.preventDefault(); }) interceptou o clique com sucesso.`);
@@ -1101,7 +1661,6 @@ const setupJqueryComparativeLab = () => {
   btnCompare3?.addEventListener('click', async () => {
     demoAsyncStatus.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Consumindo fetch()...`;
     try {
-      // Uso de fetch nativo moderno com async/await
       const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
       const data = await response.json();
       demoAsyncStatus.textContent = `Sucesso: Post #${data.id} recebido!`;
@@ -1115,18 +1674,15 @@ const setupJqueryComparativeLab = () => {
   });
 
   // CASO 4: Animações (CSS Transitions vs jQuery fadeToggle)
-  // Utilizando o próprio jQuery ($) via CDN oficial para demonstrar a equivalência real
   const btnCompare4 = document.getElementById('btnRunCompare4');
   btnCompare4?.addEventListener('click', (e) => {
     e.preventDefault();
-    // Execução do método jQuery .fadeToggle() com velocidade 350ms e callback
     if (window.$) {
       $('#demoAnimationTarget').fadeToggle(350, function () {
         const visivel = $(this).is(':visible');
         updateLabConsole(`$('#demoAnimationTarget').fadeToggle(350) -> Elemento agora está ${visivel ? 'visível' : 'oculto'}.`, true);
       });
     } else {
-      // Fallback Vanilla JS caso CDN esteja inacessível
       const target = document.getElementById('demoAnimationTarget');
       target.classList.toggle('fade-hidden');
       updateLabConsole(`target.classList.toggle('fade-hidden') executado via Vanilla JS.`);
@@ -1146,8 +1702,8 @@ const init = () => {
   setupJqueryComparativeLab();
 
   console.log(
-    '%c⚡ JS Interactive Hub inicializado com sucesso! %c22 métodos catalogados.',
-    'color: #6366f1; font-weight: bold; font-size: 13px;',
+    '%c⚡ JS Interactive Hub expandido com sucesso! %c40 métodos catalogados (ES6 a ES2023).',
+    'color: #8b5cf6; font-weight: bold; font-size: 13px;',
     'color: #10b981; font-weight: bold;'
   );
 };

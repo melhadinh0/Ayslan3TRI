@@ -1,31 +1,30 @@
 # JS Interactive Hub | Guia Prático & Live Playground ⚡
 
-Aplicação web educacional interativa desenvolvida para a disciplina de **Projeto de Interfaces para Web**, estruturada para o estudo aprofundado, consulta rápida e execução em tempo real dos métodos essenciais do **JavaScript Moderno (ES6+)** e dos fundamentos comparativos de **jQuery**.
+Aplicação web educacional interativa desenvolvida para a disciplina de **Projeto de Interfaces para Web**, estruturada para o estudo aprofundado, consulta rápida e execução em tempo real de **40 métodos e recursos essenciais do JavaScript Moderno (ES6 a ES2023)** e dos fundamentos comparativos de **jQuery**.
 
 ---
 
 ## 📋 Sobre o Projeto
 
-O **JS Interactive Hub** substitui abordagens teóricas estáticas por um ambiente dinâmico de aprendizado no formato *State-Driven Catalog* acompanhado de um **Live Playground** integrado a cada função.
+O **JS Interactive Hub** oferece um ambiente dinâmico de aprendizado no formato *State-Driven Catalog* acompanhado de um **Live Playground** integrado para cada um dos 40 métodos catalogados.
 
-Cada método catalogado conta com:
+Cada função e operador conta com:
 - **Sintaxe & Propósito**: Descrição concisa e semântica de funcionamento.
 - **Editor de Código Demonstrativo**: Snippet formatado com destaque visual e botão de cópia com um clique (`navigator.clipboard`).
-- **Live Playground (Console Interativo)**: Um mini-terminal de saída que executa a rotina JavaScript correspondente e exibe os dados de retorno formatados com tokens visuais coloridos e medição de tempo de execução (`performance.now()`).
+- **Live Playground (Console Interativo)**: Mini-terminal de saída que executa a rotina JavaScript correspondente e exibe os dados de retorno formatados com tokens visuais coloridos e medição de tempo de execução (`performance.now()`).
 
 ---
 
-## 🗂️ Catálogo de Categorias e Métodos Cobertos
+## 🗂️ Catálogo Geral (40 Métodos em 6 Módulos)
 
-A plataforma cataloga **22 métodos essenciais** distribuídos em 5 categorias temáticas:
-
-| Categoria | Métodos Catalogados | Descrição |
+| Categoria | Métodos & Recursos Catalogados | Foco Pedagógico Principal |
 | :--- | :--- | :--- |
-| **Manipulação de Arrays** | `map()`, `filter()`, `reduce()`, `forEach()`, `find()`, `includes()` | Métodos funcionais de alta ordem para transformação, filtragem e agregação de coleções sem mutabilidade indesejada. |
-| **DOM & Eventos** | `querySelector()`, `addEventListener()`, `classList.toggle()`, `createElement()` | Seleção padrão W3C, manipulação dinâmica de nós na árvore do DOM e escuta assíncrona de eventos com boas práticas de desacoplamento. |
-| **Objetos & JSON** | `Object.keys()`, `Object.entries()`, `JSON.stringify()`, `JSON.parse()` | Extração de propriedades, desestruturação de pares chave-valor e serialização/deserialização para transmissão e persistência. |
-| **Storage & Assincronismo** | `localStorage (setItem / getItem)`, `fetch()`, `Promise` / `async/await` | Persistência local no navegador, consumo de APIs REST remotas e resolução de fluxos assíncronos não-bloqueantes. |
-| **Strings & Utilitários** | `trim()`, `split()`, `replace()`, `Template Literals` | Sanitização de strings, conversão para arrays delimitados, substituição de texto e interpolação dinâmica com crases (`` `...` ``). |
+| **Manipulação de Arrays** *(10)* | `map()`, `filter()`, `reduce()`, `forEach()`, `find()`, `includes()`, `some()`, `every()`, `toSorted() [ES2023]`, `Array.from()` | Imutabilidade, predicados booleanos, ordenação pura e conversão de iteráveis. |
+| **DOM & Geometria** *(7)* | `querySelector() / querySelectorAll()`, `addEventListener()`, `classList.toggle()`, `createElement()`, `closest()`, `dataset (data-*)`, `getBoundingClientRect()` | Navegação hierárquica, Event Delegation, coordenadas de tela e metadados HTML5. |
+| **Objetos & JSON** *(8)* | `Object.keys()`, `Object.values()`, `Object.entries()`, `JSON.stringify()`, `JSON.parse()`, `structuredClone() [Deep Clone]`, `Spread (...)`, `Optional Chaining (?.) & Nullish (??)` | Extração de dados, desestruturação, clonagem profunda nativa e navegação defensiva. |
+| **Storage & Assincronismo** *(7)* | `localStorage`, `sessionStorage`, `fetch()`, `Promise / async/await`, `Promise.all()`, `Promise.allSettled()`, `setTimeout() / setInterval()` | Persistência cliente, execução concorrente paralela, resiliência de Promises e Event Loop. |
+| **Strings & Utilitários** *(5)* | `trim()`, `split()`, `replace() / replaceAll()`, `Template Literals`, `padStart() / padEnd()` | Sanitização de dados, máscaras de preenchimento, quebras por delimitador e interpolação. |
+| **Moderno & Avançado** *(3)* | `Intl.NumberFormat`, `Destructuring Assignment`, `Rest Parameters & Spread em Funções` | Internacionalização de moedas (BRL/USD/EUR), descompactação com fallbacks e argumentos variáveis. |
 
 ---
 
@@ -40,17 +39,17 @@ O projeto inclui uma seção prática demonstrando as diferenças de sintaxe e o
 | **Consumo HTTP** | `const data = await (await fetch(url)).json();` | `$.ajax({ url, success: (data) => ... });` |
 | **Animações / Fade** | `el.classList.toggle('fade-hidden');` (CSS transition) | `$(el).fadeToggle(350);` |
 
-> **Contexto Histórico:** O jQuery (2006) unificou a Web e superou inconsistências graves entre navegadores antigos. Com a padronização e avanço contínuo do ECMAScript (ES6+), os navegadores modernos absorveram essas funcionalidades de forma nativa e ultra-performática, tornando bibliotecas adicionais dispensáveis na maioria dos cenários contemporâneos.
+> **Contexto Histórico:** O jQuery (2006) unificou a Web e superou inconsistências graves entre navegadores antigos. Com a padronização e avanço contínuo do ECMAScript (ES6 a ES2023), os navegadores modernos absorveram essas funcionalidades de forma nativa e ultra-performática, tornando bibliotecas adicionais dispensáveis na maioria dos cenários contemporâneos.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **HTML5 Semântico**: Tags estruturais (`<header>`, `<main>`, `<section>`, `<footer>`), acessibilidade (ARIA labels e roles).
-- **CSS3 Moderno**: CSS Variables (Custom Properties), Flexbox, CSS Grid, animações e estilo Dark Editor para snippets de código.
+- **CSS3 Moderno**: CSS Variables (Custom Properties), Flexbox, CSS Grid, animações e tema Dark Editor.
 - **Bootstrap 5.3.3 (CDN)**: Sistema de grid responsivo, tipografia e componentes visuais.
 - **Bootstrap Icons 1.11.3 (CDN)**: Conjunto de ícones para navegação intuitiva.
-- **JavaScript Moderno (ES6+)**:
+- **JavaScript Moderno (ES6 a ES2023)**:
   - Arquitetura orientada a estado (*State-Driven Catalog*).
   - Padrão **Event Delegation** para gerenciamento de ações nos cards.
   - Funções assíncronas com `async/await` e `Promise`.
@@ -59,24 +58,20 @@ O projeto inclui uma seção prática demonstrando as diferenças de sintaxe e o
 
 ---
 
-## 🚀 Como Executar Localmente
+## 🚀 Como Executar e Visualizar
 
-O projeto possui arquitetura **Zero-Build Step** (não exige Node.js, npm ou ferramentas de empacotamento para ser utilizado):
+O projeto possui arquitetura **Zero-Build Step**:
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/melhadinh0/Ayslan3TRI.git
-   ```
-2. Acesse a pasta do projeto:
-   ```bash
-   cd Ayslan3TRI.git
-   ```
-3. Abra o arquivo `index.html` diretamente no seu navegador preferido:
-   - No Windows:
-     ```powershell
-     start index.html
-     ```
-   - Ou utilizando extensões de servidor local como o **Live Server** no VS Code / Antigravity IDE.
+### Opção 1: Servidor Local Nativo (Node.js)
+```powershell
+node serve.js
+# Acesse no navegador: http://127.0.0.1:3000
+```
+
+### Opção 2: Abertura Direta no Navegador
+```powershell
+start index.html
+```
 
 ---
 
