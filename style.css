@@ -1,29 +1,46 @@
 /* ==========================================================================
-   ESTILOS COMPLEMENTARES - GERENCIADOR DE TAREFAS & METAS DIÁRIAS
+   ESTILOS VISUAIS - JS INTERACTIVE HUB (GUIA DIDÁTICO & PLAYGROUND)
    Disciplina: Projeto de Interfaces para Web
-   Tecnologias: CSS3 Custom Properties, Flexbox, Animações e Bootstrap 5 Overrides
+   Tecnologias: CSS3 Custom Properties, JetBrains Mono, Flexbox & Grid
    ========================================================================== */
 
-/* 1. VARIÁVEIS CSS E TOKENS DE DESIGN */
+/* 1. VARIÁVEIS E TOKENS DE DESIGN SYSTEM TÉCNICO */
 :root {
-  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-code: 'JetBrains Mono', monospace;
-  
-  /* Paleta de Cores Refinada */
-  --bg-gradient-header: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  --priority-alta: #ef4444;
-  --priority-media: #f59e0b;
-  --priority-baixa: #10b981;
+  --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --transition-speed: 0.25s;
+  /* Tema do Editor & Console (Inspirado no GitHub Dark / One Dark) */
+  --editor-bg: #0d1117;
+  --editor-header: #161b22;
+  --editor-border: #30363d;
+  --editor-text: #e6edf3;
+  --editor-keyword: #ff7b72;
+  --editor-function: #d2a8ff;
+  --editor-string: #a5d6ff;
+  --editor-comment: #8b949e;
+
+  /* Console Output */
+  --console-bg: #090d16;
+  --console-text: #58a6ff;
+  --console-success: #3fb950;
+  --console-warning: #d29922;
+
+  /* Cores das Categorias */
+  --cat-arrays: #0d6efd;
+  --cat-dom: #198754;
+  --cat-objects: #ffc107;
+  --cat-async: #0dcaf0;
+  --cat-strings: #dc3545;
+
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --border-radius-card: 1rem;
 }
 
-/* 2. TIPOGRAFIA GERAL E BASE */
+/* 2. BASE & TIPOGRAFIA */
 body {
-  font-family: var(--font-primary);
-  color: #334155;
-  background-color: #f8fafc !important;
+  font-family: var(--font-ui);
+  color: #1e293b;
+  background-color: #f1f5f9 !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -33,188 +50,267 @@ main {
   flex: 1;
 }
 
-/* 3. CABEÇALHO HERO */
+code, pre, .font-monospace {
+  font-family: var(--font-mono) !important;
+}
+
+/* 3. HERO HEADER */
 .hero-header {
-  background: var(--bg-gradient-header);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* 4. CARDS DE ESTATÍSTICAS */
-.card-stat {
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-  background: #ffffff;
-}
-
-.card-stat:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
-}
-
-.stat-icon {
-  width: 54px;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Barra de Progresso Customizada */
-.progress {
-  background-color: #e2e8f0;
-  overflow: hidden;
-  border-radius: 9999px;
-}
-
-.progress-bar {
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 5. FORMULÁRIO DE CADASTRO */
-.form-card {
-  border: 1px solid rgba(226, 232, 240, 0.8) !important;
-}
-
-.form-control:focus,
-.form-select:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.15);
-}
-
-.input-group-text {
-  border-color: #dee2e6;
-}
-
-/* 6. LISTA DINÂMICA DE TAREFAS */
-.list-card {
-  border: 1px solid rgba(226, 232, 240, 0.8) !important;
-}
-
-/* Item individual da Tarefa */
-.task-item {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 0.75rem !important;
-  padding: 1rem 1.25rem;
-  transition: all var(--transition-speed) ease;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1e38 50%, #090d16 100%);
   position: relative;
   overflow: hidden;
-  animation: taskSlideIn 0.3s ease-out forwards;
 }
 
-.task-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transform: translateX(2px);
+.hero-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* Indicador de Prioridade na borda esquerda */
-.task-item.priority-alta {
-  border-left: 5px solid var(--priority-alta) !important;
+/* 4. BARRA DE CONTROLE & PÍLULAS DE CATEGORIA */
+.control-panel {
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
 }
 
-.task-item.priority-media {
-  border-left: 5px solid var(--priority-media) !important;
+.category-pill {
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #475569;
+  transition: var(--transition-smooth);
 }
 
-.task-item.priority-baixa {
-  border-left: 5px solid var(--priority-baixa) !important;
-}
-
-/* Estado da Tarefa Concluída */
-.task-item.task-completed {
+.category-pill:hover {
   background-color: #f8fafc;
-  opacity: 0.75;
-  border-left-color: #94a3b8 !important;
+  color: #0f172a;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
 }
 
-.task-item.task-completed .task-title {
-  text-decoration: line-through;
-  color: #64748b;
+.category-pill.active {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
 }
 
-/* Animações de Entrada e Saída */
-@keyframes taskSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.category-pill.active .badge {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
 }
 
-.task-item.task-removing {
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.3s ease;
+/* 5. CARDS DE FUNÇÃO (CATÁLOGO DINÂMICO) */
+.function-card {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: var(--border-radius-card) !important;
+  background-color: #ffffff;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Botões de Ação da Tarefa */
-.btn-toggle-status {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  padding: 0;
-  display: inline-flex;
+.function-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04) !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Indicadores de Borda Lateral por Categoria */
+.function-card.cat-arrays {
+  border-top: 4px solid var(--cat-arrays) !important;
+}
+
+.function-card.cat-dom {
+  border-top: 4px solid var(--cat-dom) !important;
+}
+
+.function-card.cat-objects {
+  border-top: 4px solid #eab308 !important;
+}
+
+.function-card.cat-async {
+  border-top: 4px solid #06b6d4 !important;
+}
+
+.function-card.cat-strings {
+  border-top: 4px solid var(--cat-strings) !important;
+}
+
+/* 6. MINI EDITOR DE CÓDIGO (SNIPPET CONTAINER) */
+.code-editor-box {
+  background-color: var(--editor-bg);
+  border: 1px solid var(--editor-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.editor-header {
+  background-color: var(--editor-header);
+  border-bottom: 1px solid var(--editor-border);
+  padding: 0.45rem 0.85rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.btn-toggle-status:hover {
-  transform: scale(1.1);
+.editor-dots {
+  display: flex;
+  gap: 5px;
 }
 
-.btn-delete-task {
-  opacity: 0.6;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+.editor-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-.task-item:hover .btn-delete-task {
-  opacity: 1;
+.dot-red { background-color: #ff5f56; }
+.dot-yellow { background-color: #ffbd2e; }
+.dot-green { background-color: #27c93f; }
+
+.editor-lang {
+  font-size: 0.72rem;
+  color: #8b949e;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.btn-delete-task:hover {
-  transform: scale(1.1);
-  color: #dc3545 !important;
+.btn-copy-code {
+  color: #8b949e;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
-/* 7. BLOCOS DE CÓDIGO DO LABORATÓRIO JQUERY */
+.btn-copy-code:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.editor-body pre {
+  margin: 0;
+  padding: 0.85rem;
+  color: var(--editor-text);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  max-height: 220px;
+}
+
+/* 7. LIVE PLAYGROUND (CONSOLE DE SAÍDA INTERATIVO) */
+.console-container {
+  background-color: var(--console-bg);
+  border: 1px solid #1e293b;
+  border-radius: 0.65rem;
+  padding: 0.75rem;
+  position: relative;
+}
+
+.console-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.35rem;
+}
+
+.console-output {
+  min-height: 48px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #93c5fd;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.console-output.is-empty {
+  color: #64748b;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+}
+
+/* Tokens de Destaque no Console */
+.token-string { color: #86efac; }
+.token-number { color: #93c5fd; }
+.token-boolean { color: #fde047; font-weight: 600; }
+.token-key { color: #cbd5e1; }
+.token-null { color: #f87171; }
+.token-type {
+  font-size: 0.68rem;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  margin-right: 6px;
+}
+
+/* 8. LABORATÓRIO COMPARATIVO JQUERY */
 .code-box {
   background-color: #0f172a;
   border-radius: 0.5rem;
-  padding: 0.75rem;
-  position: relative;
+  padding: 0.7rem;
   overflow-x: auto;
 }
 
 .code-box pre code {
-  color: #f1f5f9;
-  font-family: var(--font-code);
-  font-size: 0.78rem;
-  line-height: 1.4;
+  color: #f8fafc;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.45;
 }
 
 .code-label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
-/* 8. BOTÕES DE FILTRO ATIVOS */
-.filter-btn.active {
-  background-color: #0d6efd !important;
-  color: #ffffff !important;
-  box-shadow: 0 2px 6px rgba(13, 110, 253, 0.3);
+/* Classe utilitária para animação Vanilla JS do laboratório */
+.fade-hidden {
+  opacity: 0 !important;
+  transform: scale(0.95);
+  transition: all 0.35s ease;
 }
 
-/* 9. ACESSIBILIDADE E REFINOS */
+/* 9. ACESSIBILIDADE & FOCO */
 button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 2px solid #0d6efd;
+input:focus-visible {
+  outline: 2px solid #6366f1;
   outline-offset: 2px;
+}
+
+/* Scrollbars Modernas nos Códigos e Consoles */
+.editor-body pre::-webkit-scrollbar,
+.console-output::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.editor-body pre::-webkit-scrollbar-track,
+.console-output::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editor-body pre::-webkit-scrollbar-thumb,
+.console-output::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
 }

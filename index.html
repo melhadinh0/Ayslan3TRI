@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerenciador de Tarefas & Metas Diárias | Projeto de Interfaces para Web</title>
-  <meta name="description" content="Sistema interativo de gerenciamento de tarefas para fixação de JavaScript ES6+, manipulação de DOM, Bootstrap 5 e fundamentos de jQuery.">
+  <title>JS Interactive Hub | Guia Didático & Live Playground</title>
+  <meta name="description" content="Guia visual e interativo das principais funções do JavaScript moderno (ES6+) com Live Playground em tempo real e Laboratório Comparativo com jQuery.">
 
-  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans (Interface) & JetBrains Mono (Código) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Bootstrap 5.3.3 CSS (CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -17,465 +17,370 @@
   <!-- Bootstrap Icons 1.11.3 (CDN) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <!-- Estilos Customizados -->
+  <!-- Estilos Customizados da Documentação Técnica -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
+<body class="bg-body-tertiary">
 
-  <!-- Cabeçalho Principal (Header Semântico) -->
-  <header class="hero-header text-white py-4 shadow-sm">
+  <!-- =========================================================================
+       1. CABEÇALHO PRINCIPAL (HERO HEADER)
+       ========================================================================= -->
+  <header class="hero-header text-white py-5 shadow-sm border-bottom border-dark border-opacity-25">
     <div class="container">
-      <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
-        <div>
-          <div class="d-flex align-items-center gap-2 mb-1">
-            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 rounded-pill fw-semibold">
+      <div class="row align-items-center g-4">
+        
+        <div class="col-12 col-lg-8">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill">
+              <i class="bi bi-filetype-js me-1"></i> JavaScript ES6+
+            </span>
+            <span class="badge bg-white bg-opacity-10 text-light rounded-pill px-3 py-1 border border-light border-opacity-25">
               <i class="bi bi-mortarboard-fill me-1"></i> Projeto de Interfaces para Web
             </span>
-            <span class="badge bg-light text-dark rounded-pill">JavaScript ES6+ & jQuery</span>
+            <span class="badge bg-info-subtle text-info-emphasis rounded-pill px-3 py-1 fw-semibold">
+              Live Playground &amp; Catálogo Didático
+            </span>
           </div>
-          <h1 class="h3 fw-bold mb-1 d-flex align-items-center gap-2">
-            <i class="bi bi-check2-circle text-info"></i> Gerenciador de Tarefas e Metas Diárias
+          
+          <h1 class="display-6 fw-extrabold mb-2 text-white">
+            JS Interactive Hub
           </h1>
-          <p class="text-light opacity-75 mb-0 small">
-            Aplicação prática para estudo de manipulação do DOM, gestão de estado reativo e comparação sintática entre Vanilla JS e jQuery.
+          <p class="lead text-light text-opacity-75 mb-0" style="font-size: 1.05rem;">
+            Explore, compreenda e execute em tempo real as funções fundamentais do ecossistema JavaScript moderno. 
+            Contém exemplos práticos comentados, console interativo integrado e laboratório comparativo com jQuery.
           </p>
         </div>
-        <div class="d-flex gap-2">
-          <a href="#laboratorio-jquery" class="btn btn-outline-light btn-sm rounded-pill px-3 shadow-sm d-flex align-items-center gap-1">
-            <i class="bi bi-code-square"></i> Seção Didática jQuery
-          </a>
+
+        <div class="col-12 col-lg-4 text-lg-end">
+          <div class="d-inline-flex flex-column gap-2 bg-black bg-opacity-25 p-3 rounded-4 border border-white border-opacity-10 text-start w-100">
+            <div class="d-flex justify-content-between align-items-center small text-light text-opacity-75">
+              <span><i class="bi bi-code-slash me-1 text-warning"></i> Métodos Catalogados:</span>
+              <strong class="text-white fs-6" id="headerCountTotal">22 funções</strong>
+            </div>
+            <div class="d-flex justify-content-between align-items-center small text-light text-opacity-75">
+              <span><i class="bi bi-folder2-open me-1 text-info"></i> Categorias Semânticas:</span>
+              <strong class="text-white fs-6">5 módulos</strong>
+            </div>
+            <div class="d-flex justify-content-between align-items-center small text-light text-opacity-75">
+              <span><i class="bi bi-terminal me-1 text-success"></i> Ambiente de Teste:</span>
+              <strong class="text-success-emphasis badge bg-success-subtle rounded-pill">Console Ativo</strong>
+            </div>
+            <a href="#laboratorio-jquery" class="btn btn-warning btn-sm fw-bold rounded-pill mt-2 py-2 d-flex align-items-center justify-content-center gap-2">
+              <i class="bi bi-arrow-down-circle-fill"></i> Laboratório Comparativo jQuery
+            </a>
+          </div>
         </div>
+
       </div>
     </div>
   </header>
 
-  <!-- Conteúdo Principal -->
+  <!-- =========================================================================
+       2. CONTEÚDO PRINCIPAL (CATÁLOGO & PLAYGROUND)
+       ========================================================================= -->
   <main class="container py-4">
 
-    <!-- DASHBOARD DE MÉTRICAS (Contadores Dinâmicos) -->
-    <section class="mb-4" aria-label="Painel de Métricas e Progresso">
-      <div class="row g-3">
-        <!-- Card: Total -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card card-stat border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body d-flex align-items-center gap-3">
-              <div class="stat-icon bg-primary bg-opacity-10 text-primary rounded-3 p-3">
-                <i class="bi bi-list-task fs-3"></i>
-              </div>
-              <div>
-                <span class="text-secondary small fw-medium text-uppercase">Total de Tarefas</span>
-                <h3 class="fw-bold mb-0 text-dark" id="countTotal">0</h3>
-              </div>
+    <!-- BARRA DE CONTROLE: BUSCA EM TEMPO REAL & FILTROS POR CATEGORIA -->
+    <section class="control-panel card border-0 shadow-sm rounded-4 mb-4" aria-label="Painel de Controle e Filtros">
+      <div class="card-body p-4">
+        <div class="row g-3 align-items-center">
+          
+          <!-- Campo de Busca em Tempo Real -->
+          <div class="col-12 col-lg-6">
+            <label for="searchInput" class="form-label fw-bold text-secondary small text-uppercase mb-1">
+              <i class="bi bi-search me-1"></i> Filtrar por Nome, Sintaxe ou Palavra-chave
+            </label>
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0 text-muted">
+                <i class="bi bi-search"></i>
+              </span>
+              <input 
+                type="search" 
+                class="form-control border-start-0 border-end-0 bg-light" 
+                id="searchInput" 
+                placeholder="Ex.: map, filter, localStorage, fetch, querySelector..." 
+                aria-label="Buscar funções"
+                autocomplete="off"
+              >
+              <button class="btn btn-outline-secondary border-start-0 bg-light" type="button" id="btnClearSearch" title="Limpar busca">
+                <i class="bi bi-x-circle-fill text-secondary"></i>
+              </button>
             </div>
           </div>
+
+          <!-- Informações de Resultados -->
+          <div class="col-12 col-lg-6 text-lg-end">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold" id="searchFeedbackBadge">
+              Exibindo todas as funções disponíveis
+            </span>
+          </div>
+
         </div>
 
-        <!-- Card: Pendentes -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card card-stat border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body d-flex align-items-center gap-3">
-              <div class="stat-icon bg-warning bg-opacity-10 text-warning rounded-3 p-3">
-                <i class="bi bi-hourglass-split fs-3"></i>
-              </div>
-              <div>
-                <span class="text-secondary small fw-medium text-uppercase">Pendentes</span>
-                <h3 class="fw-bold mb-0 text-warning" id="countPending">0</h3>
-              </div>
-            </div>
-          </div>
+        <hr class="my-3 opacity-10">
+
+        <!-- Abas / Pílulas de Navegação por Categoria -->
+        <div class="d-flex flex-wrap gap-2 align-items-center" id="categoryFilterContainer" role="tablist">
+          <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill active" data-category="all">
+            <i class="bi bi-grid-fill me-1"></i> Todas <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountAll">0</span>
+          </button>
+          <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="arrays">
+            <i class="bi bi-list-columns-reverse me-1 text-primary"></i> Arrays <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountArrays">0</span>
+          </button>
+          <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="dom">
+            <i class="bi bi-window-stack me-1 text-success"></i> DOM &amp; Eventos <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountDom">0</span>
+          </button>
+          <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="objects">
+            <i class="bi bi-braces me-1 text-warning"></i> Objetos &amp; JSON <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountObjects">0</span>
+          </button>
+          <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="async">
+            <i class="bi bi-cloud-arrow-down me-1 text-info"></i> Storage &amp; Async <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountAsync">0</span>
+          </button>
+          <button type="button" class="btn btn-sm rounded-pill fw-semibold category-pill" data-category="strings">
+            <i class="bi bi-fonts me-1 text-danger"></i> Strings &amp; Utils <span class="badge bg-light text-dark rounded-pill ms-1" id="pillCountStrings">0</span>
+          </button>
         </div>
 
-        <!-- Card: Concluídas -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card card-stat border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body d-flex align-items-center gap-3">
-              <div class="stat-icon bg-success bg-opacity-10 text-success rounded-3 p-3">
-                <i class="bi bi-check-circle-fill fs-3"></i>
-              </div>
-              <div>
-                <span class="text-secondary small fw-medium text-uppercase">Concluídas</span>
-                <h3 class="fw-bold mb-0 text-success" id="countCompleted">0</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card: Taxa de Progresso -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card card-stat border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body d-flex flex-column justify-content-center">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="text-secondary small fw-medium text-uppercase">Conclusão</span>
-                <span class="fw-bold text-primary small" id="progressPercentage">0%</span>
-              </div>
-              <div class="progress" role="progressbar" aria-label="Progresso de tarefas concluídas" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" id="progressBar" style="width: 0%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- GRID PRINCIPAL: Formulário & Listagem -->
-    <div class="row g-4">
-
-      <!-- COLUNA DA ESQUERDA: Formulário de Cadastro -->
-      <div class="col-12 col-lg-5">
-        <div class="card border-0 shadow-sm rounded-4 sticky-lg-top form-card" style="top: 2rem;">
-          <div class="card-header bg-white border-0 pt-4 pb-2 px-4">
-            <div class="d-flex align-items-center gap-2">
-              <div class="badge-icon bg-primary text-white rounded-circle p-2 d-flex">
-                <i class="bi bi-plus-lg"></i>
-              </div>
-              <div>
-                <h2 class="h5 fw-bold mb-0 text-dark">Cadastrar Nova Tarefa</h2>
-                <small class="text-muted">Preencha os campos com validação visual</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-body p-4 pt-2">
-            <!-- Formulário com validação Bootstrap 'needs-validation' -->
-            <form id="taskForm" class="needs-validation" novalidate>
-              
-              <!-- Campo: Título da Tarefa -->
-              <div class="mb-3">
-                <label for="taskTitle" class="form-label fw-semibold small text-secondary">
-                  Título da Tarefa / Meta <span class="text-danger">*</span>
-                </label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text bg-light border-end-0 text-muted">
-                    <i class="bi bi-pencil-square"></i>
-                  </span>
-                  <input 
-                    type="text" 
-                    class="form-control border-start-0" 
-                    id="taskTitle" 
-                    placeholder="Ex.: Estudar métodos de Array em JavaScript" 
-                    required 
-                    minlength="3"
-                    maxlength="100"
-                    autocomplete="off"
-                  >
-                  <!-- Feedback de Validação Visual -->
-                  <div class="invalid-feedback">
-                    Por favor, informe o título da tarefa (mínimo 3 caracteres).
-                  </div>
-                </div>
-              </div>
-
-              <!-- Campo: Nível de Prioridade -->
-              <div class="mb-3">
-                <label for="taskPriority" class="form-label fw-semibold small text-secondary">
-                  Nível de Prioridade <span class="text-danger">*</span>
-                </label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text bg-light border-end-0 text-muted">
-                    <i class="bi bi-flag"></i>
-                  </span>
-                  <select class="form-select border-start-0" id="taskPriority" required>
-                    <option value="" selected disabled>Selecione a prioridade...</option>
-                    <option value="baixa">🟢 Baixa Prioridade</option>
-                    <option value="media">🟡 Média Prioridade</option>
-                    <option value="alta">🔴 Alta Prioridade</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Selecione uma prioridade válida.
-                  </div>
-                </div>
-              </div>
-
-              <!-- Campo: Categoria -->
-              <div class="mb-4">
-                <label for="taskCategory" class="form-label fw-semibold small text-secondary">
-                  Categoria da Meta <span class="text-danger">*</span>
-                </label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text bg-light border-end-0 text-muted">
-                    <i class="bi bi-tags"></i>
-                  </span>
-                  <select class="form-select border-start-0" id="taskCategory" required>
-                    <option value="" selected disabled>Selecione uma categoria...</option>
-                    <option value="Estudos">📚 Estudos & Faculdade</option>
-                    <option value="Trabalho">💼 Trabalho & Projetos</option>
-                    <option value="Saúde">🏃 Saúde & Bem-estar</option>
-                    <option value="Pessoal">👤 Pessoal & Finanças</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Escolha uma categoria para a tarefa.
-                  </div>
-                </div>
-              </div>
-
-              <!-- Botão de Ação do Formulário -->
-              <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary btn-lg rounded-3 fw-semibold shadow-sm py-2 d-flex align-items-center justify-content-center gap-2" id="btnSubmitTask">
-                  <i class="bi bi-plus-circle"></i> Adicionar Tarefa
-                </button>
-                <button type="reset" class="btn btn-light text-secondary btn-sm py-1" id="btnResetForm">
-                  <i class="bi bi-arrow-counterclockwise"></i> Limpar Formulário
-                </button>
-              </div>
-
-            </form>
-          </div>
-        </div>
+    <!-- GRADE DE CARDS DAS FUNÇÕES (RENDERIZADA DINAMICAMENTE PELO JAVASCRIPT) -->
+    <section aria-label="Catálogo de Métodos do JavaScript">
+      <div class="row g-4" id="functionsGrid">
+        <!-- Itens inseridos dinamicamente pelo script.js -->
       </div>
 
-      <!-- COLUNA DA DIREITA: Listagem Dinâmica e Filtros -->
-      <div class="col-12 col-lg-7">
-        <div class="card border-0 shadow-sm rounded-4 list-card">
-          
-          <!-- Cabeçalho da Listagem com Filtros -->
-          <div class="card-header bg-white border-0 pt-4 pb-3 px-4">
-            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
-              <div>
-                <h2 class="h5 fw-bold mb-1 text-dark">Minhas Tarefas</h2>
-                <small class="text-muted">Itens gerenciados dinamicamente via JavaScript</small>
-              </div>
-
-              <!-- Grupo de Botões de Filtro -->
-              <div class="btn-group btn-group-sm p-1 bg-light rounded-pill border" role="group" aria-label="Filtro de tarefas">
-                <button type="button" class="btn btn-sm rounded-pill active fw-medium px-3 filter-btn" data-filter="all">
-                  Todas
-                </button>
-                <button type="button" class="btn btn-sm rounded-pill fw-medium px-3 filter-btn" data-filter="pending">
-                  Pendentes
-                </button>
-                <button type="button" class="btn btn-sm rounded-pill fw-medium px-3 filter-btn" data-filter="completed">
-                  Concluídas
-                </button>
-              </div>
-            </div>
-
-            <!-- Barra de Busca Rápida -->
-            <div class="mt-3">
-              <div class="input-group input-group-sm">
-                <span class="input-group-text bg-light border-end-0 text-muted">
-                  <i class="bi bi-search"></i>
-                </span>
-                <input 
-                  type="search" 
-                  class="form-control border-start-0 bg-light" 
-                  id="searchInput" 
-                  placeholder="Pesquisar tarefas por título ou categoria..."
-                  aria-label="Buscar tarefas"
-                >
-                <button class="btn btn-outline-secondary border-start-0 bg-light" type="button" id="btnClearSearch" title="Limpar busca">
-                  <i class="bi bi-x-circle"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Container da Lista Dinâmica -->
-          <div class="card-body p-4 pt-1">
-            
-            <!-- Lista UL que receberá os elementos criados via DOM no script.js -->
-            <ul class="list-group list-group-flush gap-2" id="taskList" aria-live="polite">
-              <!-- Renderização dinâmica feita por JavaScript aqui -->
-            </ul>
-
-            <!-- Estado Vazio (Empty State) -->
-            <div id="emptyState" class="text-center py-5 d-none">
-              <div class="empty-state-icon bg-light text-muted rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                <i class="bi bi-clipboard2-check fs-1 text-secondary opacity-50"></i>
-              </div>
-              <h3 class="h6 fw-semibold text-secondary mb-1">Nenhuma tarefa encontrada</h3>
-              <p class="text-muted small mb-3">Você não possui tarefas nesta visualização. Que tal cadastrar uma nova meta?</p>
-            </div>
-
-          </div>
-
-          <!-- Rodapé do Card da Lista com Ações Globais -->
-          <div class="card-footer bg-light bg-opacity-50 border-top px-4 py-3 d-flex justify-content-between align-items-center">
-            <span class="text-muted small" id="listFooterInfo">Carregando itens...</span>
-            <button class="btn btn-outline-danger btn-sm rounded-pill px-3 d-none" id="btnClearAllCompleted" title="Remover apenas as tarefas concluídas">
-              <i class="bi bi-trash3 me-1"></i> Limpar Concluídas
-            </button>
-          </div>
-
+      <!-- Estado Vazio (Empty State para buscas sem resultado) -->
+      <div id="emptyCatalogState" class="text-center py-5 d-none">
+        <div class="empty-state-icon bg-light text-secondary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+          <i class="bi bi-search fs-1 opacity-50"></i>
         </div>
+        <h3 class="h5 fw-bold text-dark mb-1">Nenhum método encontrado</h3>
+        <p class="text-muted small mb-3">Tente ajustar o termo de busca ou selecione outra categoria nas pílulas acima.</p>
+        <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4" id="btnResetFilters">
+          <i class="bi bi-arrow-counterclockwise me-1"></i> Restaurar Visualização
+        </button>
       </div>
+    </section>
 
-    </div>
-
-    <!-- SEÇÃO DIDÁTICA: LABORATÓRIO EDUCACIONAL VANILLA JS vs JQUERY -->
-    <section class="mt-5" id="laboratorio-jquery" aria-label="Laboratório Didático Vanilla JS vs jQuery">
+    <!-- =========================================================================
+         3. SEÇÃO DIDÁTICA: LABORATÓRIO COMPARATIVO VANILLA JS vs JQUERY
+         ========================================================================= -->
+    <section class="mt-5 pt-3" id="laboratorio-jquery" aria-label="Laboratório Comparativo Vanilla JS vs jQuery">
       <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
         
-        <!-- Header da Seção Didática -->
         <div class="card-header bg-dark text-white p-4">
           <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
             <div>
               <div class="d-flex align-items-center gap-2 mb-1">
-                <span class="badge bg-warning text-dark fw-bold">Conteúdo Pedagógico</span>
-                <span class="badge bg-secondary">Teoria & Prática</span>
+                <span class="badge bg-warning text-dark fw-bold">Evolução da Web</span>
+                <span class="badge bg-secondary">Análise Prática &amp; Teórica</span>
               </div>
-              <h2 class="h5 fw-bold mb-0 d-flex align-items-center gap-2">
+              <h2 class="h4 fw-bold mb-1 text-white d-flex align-items-center gap-2">
                 <i class="bi bi-lightning-charge-fill text-warning"></i> 
                 Laboratório Comparativo: Vanilla JavaScript (ES6+) vs jQuery
               </h2>
-              <small class="text-white-50">
-                Veja lado a lado como as instruções equivalentes são escritas em JavaScript nativo e na biblioteca jQuery.
-              </small>
+              <p class="text-white-50 small mb-0">
+                Entenda a equivalência de sintaxe, o papel histórico do jQuery e as razões da consolidação do JavaScript nativo moderno.
+              </p>
             </div>
             <div>
-              <button class="btn btn-outline-light btn-sm rounded-pill px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEduLab" aria-expanded="true" aria-controls="collapseEduLab">
-                <i class="bi bi-chevron-expand me-1"></i> Expandir / Recolher
+              <button class="btn btn-outline-light btn-sm rounded-pill px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJqueryLab" aria-expanded="true" aria-controls="collapseJqueryLab">
+                <i class="bi bi-arrows-expand me-1"></i> Alternar Painel
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Conteúdo Expansível do Laboratório -->
-        <div class="collapse show" id="collapseEduLab">
+        <div class="collapse show" id="collapseJqueryLab">
           <div class="card-body p-4 bg-white">
             
-            <div class="alert alert-primary border-0 bg-primary-subtle text-primary-emphasis rounded-3 mb-4 d-flex align-items-center gap-3">
-              <i class="bi bi-info-circle-fill fs-4 flex-shrink-0"></i>
+            <div class="alert alert-primary border-0 bg-primary-subtle text-primary-emphasis rounded-3 mb-4 d-flex align-items-start gap-3">
+              <i class="bi bi-info-circle-fill fs-4 flex-shrink-0 mt-1"></i>
               <div class="small">
-                <strong>Por que aprender ambos na disciplina?</strong> O jQuery revolucionou a Web ao unificar a sintaxe e resolver inconsistências entre navegadores legados (como IE6/7/8). No entanto, com a consolidação dos padrões <strong>ES6+</strong> (como <code>querySelector</code>, <code>fetch</code>, e métodos funcionais de array), o <strong>Vanilla JavaScript</strong> tornou-se rápido, moderno e autossuficiente. Compreender essa equivalência é essencial para manutenção de sistemas legados e domínio do ecossistema front-end!
+                <strong>Por que o Vanilla JS superou o jQuery em projetos modernos?</strong> 
+                O jQuery (2006) foi vital para padronizar o DOM em navegadores antigos e simplificar requisições AJAX. A partir de 2015, com as especificações <strong>ECMAScript 6+</strong> e APIs modernas (como <code>querySelector</code>, <code>fetch</code>, <code>classList</code> e métodos funcionais de arrays), os navegadores alcançaram compatibilidade nativa de alta performance, dispensando o peso de uma biblioteca externa de 30KB+ na maioria das aplicações contemporâneas.
               </div>
             </div>
 
-            <!-- Comparativo em Abas / Grid -->
+            <!-- Grade de 4 Casos Comparativos Práticos -->
             <div class="row g-4">
               
-              <!-- Caso 1: Seleção e Manipulação de Elementos -->
-              <div class="col-12 col-md-4">
-                <div class="card h-100 border rounded-3 p-3 bg-light">
+              <!-- Caso 1: Seleção e Manipulação de Conteúdo -->
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="card h-100 border rounded-3 p-3 bg-light shadow-sm">
                   <div class="d-flex align-items-center gap-2 mb-2">
-                    <span class="badge bg-secondary">Caso 1</span>
-                    <h3 class="h6 fw-bold mb-0 text-dark">Seleção e Texto</h3>
+                    <span class="badge bg-primary">Caso 1</span>
+                    <h3 class="h6 fw-bold mb-0 text-dark">Seleção &amp; Texto</h3>
                   </div>
-                  <p class="text-muted small mb-3">Capturar um elemento pelo ID e atualizar seu texto interno.</p>
+                  <p class="text-muted small mb-2">Localizar um nó no DOM e modificar seu conteúdo de texto.</p>
                   
                   <div class="code-box mb-2">
-                    <span class="code-label text-primary">Vanilla JS (Nativo)</span>
-                    <pre class="mb-0 font-monospace small"><code>// Seleciona e altera texto
-const el = document.getElementById('countTotal');
-el.textContent = '10';</code></pre>
+                    <span class="code-label text-primary">Vanilla JS (ES6+)</span>
+                    <pre class="mb-0 font-monospace"><code>document.querySelector('#demoText')
+  .textContent = 'Olá!';</code></pre>
                   </div>
 
                   <div class="code-box mb-3">
-                    <span class="code-label text-warning-emphasis">jQuery</span>
-                    <pre class="mb-0 font-monospace small"><code>// Sintaxe abreviada com $
-$('#countTotal').text('10');</code></pre>
+                    <span class="code-label text-warning">jQuery</span>
+                    <pre class="mb-0 font-monospace"><code>$('#demoText').text('Olá!');</code></pre>
                   </div>
 
-                  <button class="btn btn-outline-primary btn-sm w-100 rounded-2" id="btnTestJqueryCase1">
-                    <i class="bi bi-play-circle me-1"></i> Testar no Console / Interface
+                  <div class="demo-box-preview p-2 border rounded bg-white small mb-3 text-center">
+                    <span id="demoTextElement" class="fw-semibold text-secondary">Texto Original (Aguardando)</span>
+                  </div>
+
+                  <button class="btn btn-outline-primary btn-sm w-100 rounded-2 mt-auto" id="btnRunCompare1">
+                    <i class="bi bi-play-fill"></i> Executar Vanilla JS
                   </button>
                 </div>
               </div>
 
-              <!-- Caso 2: Escuta de Eventos de Clique -->
-              <div class="col-12 col-md-4">
-                <div class="card h-100 border rounded-3 p-3 bg-light">
+              <!-- Caso 2: Escuta de Eventos -->
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="card h-100 border rounded-3 p-3 bg-light shadow-sm">
                   <div class="d-flex align-items-center gap-2 mb-2">
-                    <span class="badge bg-secondary">Caso 2</span>
+                    <span class="badge bg-success">Caso 2</span>
                     <h3 class="h6 fw-bold mb-0 text-dark">Escuta de Eventos</h3>
                   </div>
-                  <p class="text-muted small mb-3">Adicionar um ouvinte para cliques e evitar o comportamento padrão.</p>
+                  <p class="text-muted small mb-2">Capturar evento de clique com cancelamento do comportamento nativo.</p>
                   
                   <div class="code-box mb-2">
-                    <span class="code-label text-primary">Vanilla JS (Nativo)</span>
-                    <pre class="mb-0 font-monospace small"><code>// addEventListener padrão
-btn.addEventListener('click', (event) => {
-  event.preventDefault();
-  console.log('Clicado!');
+                    <span class="code-label text-primary">Vanilla JS (ES6+)</span>
+                    <pre class="mb-0 font-monospace"><code>btn.addEventListener('click', (e) => {
+  e.preventDefault();
 });</code></pre>
                   </div>
 
                   <div class="code-box mb-3">
-                    <span class="code-label text-warning-emphasis">jQuery</span>
-                    <pre class="mb-0 font-monospace small"><code>// Método .on() ou .click()
-$('button').on('click', function(event) {
-  event.preventDefault();
-  console.log('Clicado!');
+                    <span class="code-label text-warning">jQuery</span>
+                    <pre class="mb-0 font-monospace"><code>$(btn).on('click', function(e) {
+  e.preventDefault();
 });</code></pre>
                   </div>
 
-                  <button class="btn btn-outline-primary btn-sm w-100 rounded-2" id="btnTestJqueryCase2">
-                    <i class="bi bi-play-circle me-1"></i> Disparar Exemplo de Clique
+                  <div class="demo-box-preview p-2 border rounded bg-white small mb-3 text-center">
+                    <span id="demoClickFeedback" class="fw-semibold text-muted">Aguardando clique...</span>
+                  </div>
+
+                  <button class="btn btn-outline-success btn-sm w-100 rounded-2 mt-auto" id="btnRunCompare2">
+                    <i class="bi bi-cursor-fill"></i> Disparar Evento
                   </button>
                 </div>
               </div>
 
-              <!-- Caso 3: Animação e Ocultação (Fade) -->
-              <div class="col-12 col-md-4">
-                <div class="card h-100 border rounded-3 p-3 bg-light">
+              <!-- Caso 3: Requisições Assíncronas (fetch vs $.ajax) -->
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="card h-100 border rounded-3 p-3 bg-light shadow-sm">
                   <div class="d-flex align-items-center gap-2 mb-2">
-                    <span class="badge bg-secondary">Caso 3</span>
-                    <h3 class="h6 fw-bold mb-0 text-dark">Animação & Ocultação</h3>
+                    <span class="badge bg-info text-dark">Caso 3</span>
+                    <h3 class="h6 fw-bold mb-0 text-dark">Assincronismo HTTP</h3>
                   </div>
-                  <p class="text-muted small mb-3">Fazer um elemento desaparecer suavemente da interface.</p>
+                  <p class="text-muted small mb-2">Consumir dados remotos de uma API REST no formato JSON.</p>
                   
                   <div class="code-box mb-2">
-                    <span class="code-label text-primary">Vanilla JS (Nativo)</span>
-                    <pre class="mb-0 font-monospace small"><code>// Transição CSS + remoção
-el.style.transition = 'opacity 0.3s';
-el.style.opacity = '0';
-setTimeout(() => el.remove(), 300);</code></pre>
+                    <span class="code-label text-primary">Vanilla JS (fetch / async)</span>
+                    <pre class="mb-0 font-monospace"><code>const res = await fetch(url);
+const data = await res.json();</code></pre>
                   </div>
 
                   <div class="code-box mb-3">
-                    <span class="code-label text-warning-emphasis">jQuery</span>
-                    <pre class="mb-0 font-monospace small"><code>// Método nativo fadeOut()
-$('#demoBox').fadeOut(300, function() {
-  $(this).remove();
-});</code></pre>
+                    <span class="code-label text-warning">jQuery ($.ajax)</span>
+                    <pre class="mb-0 font-monospace"><code>$.ajax({ url, success: (d) => ... });</code></pre>
                   </div>
 
-                  <div id="demoBoxContainer" class="mt-2 mb-2">
-                    <div id="demoBox" class="alert alert-info py-2 px-3 small mb-0 d-flex justify-content-between align-items-center">
-                      <span>Caixa de Teste Visual</span>
-                      <span class="badge bg-info text-dark">jQuery Efeito</span>
-                    </div>
+                  <div class="demo-box-preview p-2 border rounded bg-white small mb-3 text-center">
+                    <span id="demoAsyncStatus" class="fw-semibold text-muted">Status: Ocioso</span>
                   </div>
 
-                  <button class="btn btn-outline-warning text-dark fw-medium btn-sm w-100 rounded-2" id="btnTestJqueryFade">
-                    <i class="bi bi-stars me-1"></i> Executar jQuery .fadeToggle()
+                  <button class="btn btn-outline-info text-dark btn-sm w-100 rounded-2 mt-auto" id="btnRunCompare3">
+                    <i class="bi bi-cloud-arrow-down-fill"></i> Simular Requisição
+                  </button>
+                </div>
+              </div>
+
+              <!-- Caso 4: Animações e Alternância de Classes -->
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="card h-100 border rounded-3 p-3 bg-light shadow-sm">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-danger">Caso 4</span>
+                    <h3 class="h6 fw-bold mb-0 text-dark">Animação &amp; Ocultação</h3>
+                  </div>
+                  <p class="text-muted small mb-2">Ocultar ou exibir um elemento com transição suave.</p>
+                  
+                  <div class="code-box mb-2">
+                    <span class="code-label text-primary">Vanilla JS (CSS + class)</span>
+                    <pre class="mb-0 font-monospace"><code>box.classList.toggle('fade-hidden');</code></pre>
+                  </div>
+
+                  <div class="code-box mb-3">
+                    <span class="code-label text-warning">jQuery (.fadeToggle)</span>
+                    <pre class="mb-0 font-monospace"><code>$('#box').fadeToggle(300);</code></pre>
+                  </div>
+
+                  <div id="demoAnimationTarget" class="p-2 border rounded bg-warning bg-opacity-25 small mb-3 text-center fw-semibold text-dark">
+                    Elemento Interativo de Animação
+                  </div>
+
+                  <button class="btn btn-outline-warning text-dark btn-sm w-100 rounded-2 mt-auto" id="btnRunCompare4">
+                    <i class="bi bi-stars"></i> Executar jQuery .fadeToggle()
                   </button>
                 </div>
               </div>
 
             </div>
 
-            <!-- Feedback Interativo do Laboratório -->
-            <div id="labFeedbackAlert" class="alert alert-secondary py-2 px-3 small rounded-3 mt-3 mb-0 d-none">
-              <i class="bi bi-terminal me-2"></i><span id="labFeedbackText">Aguardando interação...</span>
+            <!-- Painel de Feedback Geral do Laboratório -->
+            <div id="labGlobalConsole" class="alert alert-dark mt-4 mb-0 py-2 px-3 small font-monospace d-flex align-items-center justify-content-between rounded-3">
+              <div>
+                <i class="bi bi-terminal-fill text-warning me-2"></i>
+                <span id="labGlobalConsoleMsg" class="text-light text-opacity-75">Laboratório pronto. Clique nos botões acima para executar comparações.</span>
+              </div>
+              <span class="badge bg-secondary">Console</span>
             </div>
 
           </div>
         </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- Rodapé Semântico -->
+  <!-- =========================================================================
+       4. RODAPÉ SEMÂNTICO (FOOTER)
+       ========================================================================= -->
   <footer class="bg-white border-top py-4 mt-5 text-center text-secondary small">
     <div class="container">
-      <p class="mb-1 fw-semibold text-dark">
-        Disciplina: Projeto de Interfaces para Web &bull; Estudo de JavaScript & jQuery
-      </p>
-      <p class="mb-0 text-muted">
-        Desenvolvido com HTML5 Semântico, CSS3, Bootstrap 5.3.3 e JavaScript Moderno (ES6+).
-      </p>
+      <div class="row align-items-center g-2">
+        <div class="col-12 col-md-6 text-md-start">
+          <p class="mb-0 fw-semibold text-dark">
+            JS Interactive Hub &bull; Disciplina: Projeto de Interfaces para Web
+          </p>
+          <span class="text-muted">Desenvolvido com HTML5 Semântico, CSS3, Bootstrap 5.3.3 e JavaScript Moderno (ES6+).</span>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+          <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-secondary me-3">
+            <i class="bi bi-box-arrow-up-right me-1"></i> MDN Web Docs
+          </a>
+          <a href="https://tc39.es/ecma262/" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-secondary">
+            <i class="bi bi-file-earmark-code me-1"></i> Especificação ECMA-262
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- CDNs de Scripts -->
-  <!-- 1. jQuery 3.7.1 (CDN Oficial minificado) -->
+  <!-- =========================================================================
+       5. SCRIPTS EXTERNOS (CDNs) & NÚCLEO DA APLICAÇÃO
+       ========================================================================= -->
+  <!-- 1. jQuery 3.7.1 (Utilizado para o Laboratório Comparativo) -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
   <!-- 2. Bootstrap 5.3.3 JS Bundle (Popper incluído) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <!-- 3. Núcleo Educacional da Aplicação -->
+  <!-- 3. Núcleo Lógico do JS Interactive Hub & Playground -->
   <script src="script.js"></script>
 </body>
 </html>
